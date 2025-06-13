@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Static White Navigation Bar</title>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+          background-color: #000;
+          font-family: 'Arial', sans-serif;
+        }
+
+        .navbar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          padding: 1.5rem 5%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          z-index: 1000;
+          background: transparent;
+        }
+
+        .logo img {
+          width: 60px;
+          height: auto;
+        }
+
+        .nav-links {
+          display: flex;
+          gap: 2rem;
+          list-style: none;
+          align-items: center;
+        }
+
+        .nav-links a {
+          color: #fff;
+          text-decoration: none;
+          font-weight: 700;
+          font-size: 1rem;
+          position: relative;
+          transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 2px;
+          bottom: -5px;
+          left: 0;
+          background-color: currentColor;
+          transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+          color: #ddd;
+        }
+
+        .nav-links a:hover::after {
+          width: 100%;
+        }
+
+        .connect-btn {
+          background: none;
+          border: 2px solid #fff;
+          color: #fff;
+          font-weight: 700;
+          font-size: 1rem;
+          cursor: pointer;
+          padding: 0.5rem 1.5rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          transition: all 0.3s ease;
+        }
+
+        .connect-btn svg {
+          width: 16px;
+          height: 16px;
+          stroke: #fff;
+          transition: stroke 0.3s ease;
+        }
+
+        .connect-btn:hover {
+          background: #fff;
+          color: #000;
+        }
+
+        .connect-btn:hover svg {
+          stroke: #000;
+        }
+
+        .hamburger {
+          display: none;
+          flex-direction: column;
+          justify-content: space-between;
+          width: 24px;
+          height: 18px;
+          cursor: pointer;
+        }
+
+        .hamburger span {
+          height: 2px;
+          width: 100%;
+          background: #fff;
+          transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+          .hamburger {
+            display: flex;
+          }
+
+          .nav-links {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+          }
+
+          .nav-links.active {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: all;
+          }
+
+          .connect-btn {
+            display: none;
+          }
+
+          .mobile-connect {
+            display: flex !important;
+            margin-top: 2rem;
+          }
+        }
+
+        .mobile-connect {
+          display: none;
+        }
+
+        .hamburger.open span:nth-child(1) {
+          transform: rotate(45deg) translateY(7px);
+        }
+
+        .hamburger.open span:nth-child(2) {
+          opacity: 0;
+        }
+
+        .hamburger.open span:nth-child(3) {
+          transform: rotate(-45deg) translateY(-7px);
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <a href="index.html">
+            <img src="assets/file/logo1.png" alt="Logo" />
+        </a>
+    </div>
+
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="work.html">Works</a></li>
+        <li class="mobile-connect">
+            <a href="contact.html" class="connect-btn">
+                <span>Connect</span>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </li>
+    </ul>
+
+    <button class="connect-btn desktop-connect" onclick="window.location.href='contact.html'">
+        <span>Connect</span>
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+</nav>
+
+
+<script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a, .mobile-connect').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('active');
+      });
+    });
+</script>
+</body>
+</html>

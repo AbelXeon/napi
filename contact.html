@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Photography</title>
+    <link rel="stylesheet" href="assets/css/contact.css">
+    <link href="https://fonts.googleapis.com/css2?family=Helvetica:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/playwrite-dutchland-grand" rel="stylesheet">
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+<div id="navbar-container"></div>
+
+<section class="contact-section">
+    <div class="contact-content">
+        <div class="content-wrapper">
+            <h1 class="contact-title">Let's Create <span>Something Beautiful</span></h1>
+            <div class="contact-info">
+                <p>Every great collaboration starts with a conversation. Whether you're planning a wedding, need commercial photography, or want to capture special moments, I'd love to hear about your vision.</p>
+
+                <div class="info-card">
+                    <h3>General Inquiries</h3>
+                    <p><a href="mailto:contact@example.com">contact@jhonathan.com</a></p>
+                    <p>+1 (555) 123-4567</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>Studio Address</h3>
+                    <p>123 Creative Avenue<br>Art District, CA 90210<br>Addis Abeba</p>
+                </div>
+
+                <div class="social-links">
+                    <a href="#" class="social-icon">Instagram</a>
+                    <a href="#" class="social-icon">Behance</a>
+                    <a href="#" class="social-icon">Pinterest</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-form-container">
+        <form class="contact-form">
+            <h2 class="form-title">Get In Touch</h2>
+            <p class="form-subtitle">Ready to collaborate? Fill out the form below and I'll get back to you within 48 hours.</p>
+
+            <div class="form-group">
+                <input type="text" class="form-control" id="name" placeholder=" " required>
+                <label for="name">Your Name</label>
+            </div>
+
+            <div class="form-group">
+                <input type="email" class="form-control" id="email" placeholder=" " required>
+                <label for="email">Email Address</label>
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" id="subject" placeholder=" ">
+                <label for="subject">Subject (Optional)</label>
+            </div>
+
+            <div class="form-group">
+                <textarea class="form-control" id="message" placeholder=" " required></textarea>
+                <label for="message">Your Message</label>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <span class="btn-text">Send Message</span>
+                <span class="btn-icon">→</span>
+            </button>
+        </form>
+    </div>
+</section>
+
+<div id="footer-container"></div>
+<script src="assets/js/loadcomponents.js"></script>
+<script src="assets/js/contact.js"></script>
+
+</body>
+</html>
