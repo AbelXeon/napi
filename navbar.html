@@ -3,170 +3,206 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Static White Navigation Bar</title>
+    <title>Improved Navigation Bar</title>
     <style>
+        /* --- Base & Variables --- */
+        :root {
+            --nav-background: #000;
+            --nav-text-color: #fff;
+            --nav-text-hover: #ddd;
+            --nav-transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
         * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-          background-color: #000;
-          font-family: 'Arial', sans-serif;
+            /* This is a placeholder for your actual site's background */
+            background-color: #121212;
+            font-family: 'Manrope', 'Arial', sans-serif;
         }
 
+        /* This class is added by JS to prevent scrolling when the menu is open */
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        /* --- Navbar Container --- */
         .navbar {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          padding: 1.5rem 5%;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          z-index: 1000;
-          background: transparent;
-        }
-
-        .logo img {
-          width: 60px;
-          height: auto;
-        }
-
-        .nav-links {
-          display: flex;
-          gap: 2rem;
-          list-style: none;
-          align-items: center;
-        }
-
-        .nav-links a {
-          color: #fff;
-          text-decoration: none;
-          font-weight: 700;
-          font-size: 1rem;
-          position: relative;
-          transition: color 0.3s ease;
-        }
-
-        .nav-links a::after {
-          content: '';
-          position: absolute;
-          width: 0;
-          height: 2px;
-          bottom: -5px;
-          left: 0;
-          background-color: currentColor;
-          transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-          color: #ddd;
-        }
-
-        .nav-links a:hover::after {
-          width: 100%;
-        }
-
-        .connect-btn {
-          background: none;
-          border: 2px solid #fff;
-          color: #fff;
-          font-weight: 700;
-          font-size: 1rem;
-          cursor: pointer;
-          padding: 0.5rem 1.5rem;
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          transition: all 0.3s ease;
-        }
-
-        .connect-btn svg {
-          width: 16px;
-          height: 16px;
-          stroke: #fff;
-          transition: stroke 0.3s ease;
-        }
-
-        .connect-btn:hover {
-          background: #fff;
-          color: #000;
-        }
-
-        .connect-btn:hover svg {
-          stroke: #000;
-        }
-
-        .hamburger {
-          display: none;
-          flex-direction: column;
-          justify-content: space-between;
-          width: 24px;
-          height: 18px;
-          cursor: pointer;
-        }
-
-        .hamburger span {
-          height: 2px;
-          width: 100%;
-          background: #fff;
-          transition: all 0.3s ease;
-        }
-
-        @media (max-width: 768px) {
-          .hamburger {
-            display: flex;
-          }
-
-          .nav-links {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100vh;
-            background: #000;
-            flex-direction: column;
-            justify-content: center;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            transform: translateY(-100%);
-            opacity: 0;
-            pointer-events: none;
+            z-index: 1000;
+            background: transparent;
+        }
+
+        .logo img {
+            width: 60px;
+            height: auto;
+            display: block;
+        }
+
+        /* --- Navigation Links (Desktop) --- */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--nav-text-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:not(.connect-btn)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:not(.connect-btn):hover {
+            color: var(--nav-text-hover);
+        }
+
+        .nav-links a:not(.connect-btn):hover::after {
+            width: 100%;
+        }
+
+        /* --- Connect Button (Unified for Desktop/Mobile) --- */
+        .connect-btn {
+            background: none;
+            border: 2px solid var(--nav-text-color);
+            color: var(--nav-text-color);
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0.5rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             transition: all 0.3s ease;
-          }
-
-          .nav-links.active {
-            transform: translateY(0);
-            opacity: 1;
-            pointer-events: all;
-          }
-
-          .connect-btn {
-            display: none;
-          }
-
-          .mobile-connect {
-            display: flex !important;
-            margin-top: 2rem;
-          }
         }
 
-        .mobile-connect {
-          display: none;
+        .connect-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--nav-text-color);
+            transition: stroke 0.3s ease;
         }
 
+        .connect-btn:hover {
+            background: var(--nav-text-color);
+            color: var(--nav-background);
+        }
+
+        .connect-btn:hover svg {
+            stroke: var(--nav-background);
+        }
+
+        /* --- Hamburger Toggle --- */
+        .hamburger {
+            display: none; /* Hidden on desktop */
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 1002; /* Must be above the nav-links background */
+        }
+
+        .hamburger span {
+            height: 3px;
+            width: 100%;
+            background: var(--nav-text-color);
+            border-radius: 2px;
+            transition: var(--nav-transition);
+        }
+
+        /* Hamburger animation to 'X' */
         .hamburger.open span:nth-child(1) {
-          transform: rotate(45deg) translateY(7px);
+            transform: rotate(45deg) translate(7px, 7px);
         }
-
         .hamburger.open span:nth-child(2) {
-          opacity: 0;
+            opacity: 0;
+        }
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
         }
 
-        .hamburger.open span:nth-child(3) {
-          transform: rotate(-45deg) translateY(-7px);
+        /* --- NEW: Explicit Close Button for Mobile Menu --- */
+        .close-btn {
+            display: none; /* Hidden by default */
+            position: absolute;
+            top: 2rem;
+            right: 5%;
+            background: none;
+            border: none;
+            color: var(--nav-text-color);
+            font-size: 3rem;
+            font-weight: 300;
+            cursor: pointer;
         }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: var(--nav-background);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2.5rem; /* Increased gap for vertical layout */
+
+                /* Start hidden, off-screen */
+                opacity: 0;
+                transform: translateY(-100%);
+                pointer-events: none;
+                transition: var(--nav-transition);
+            }
+
+            .nav-links.active {
+                opacity: 1;
+                transform: translateY(0);
+                pointer-events: all;
+            }
+
+            /* Show the explicit close button only when the menu is active */
+            .nav-links.active .close-btn {
+                display: block;
+            }
+
+            /* Hide the desktop button */
+            .navbar > .connect-btn {
+                display: none;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -184,44 +220,81 @@
         <span></span>
     </div>
 
+    <!-- The Nav Links UL now contains everything, including the close button and the connect button -->
     <ul class="nav-links" id="navLinks">
+        <!-- The new explicit close button for mobile -->
+        <button class="close-btn" id="closeBtn" aria-label="Close menu">×</button>
+
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="work.html">Works</a></li>
-        <li class="mobile-connect">
+
+        <!-- The Connect button is now an LI item, simplifying the HTML and CSS -->
+        <li>
             <a href="contact.html" class="connect-btn">
                 <span>Connect</span>
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </a>
         </li>
     </ul>
 
+    <!-- This is the original desktop-only button. We now use the one inside the UL instead -->
+    <!-- It can be safely removed, but I've kept it here commented out for reference -->
+    <!--
     <button class="connect-btn desktop-connect" onclick="window.location.href='contact.html'">
-        <span>Connect</span>
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+    ...
     </button>
+    -->
 </nav>
 
 
 <script>
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    const closeBtn = document.getElementById('closeBtn');
+    const allNavLinks = document.querySelectorAll('.nav-links a');
 
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('open');
-      navLinks.classList.toggle('active');
-    });
+    // Function to open the menu
+    const openMenu = () => {
+        hamburger.classList.add('open');
+        navLinks.classList.add('active');
+        document.body.classList.add('menu-open'); // Prevents background scroll
+    };
 
-    document.querySelectorAll('.nav-links a, .mobile-connect').forEach(link => {
-      link.addEventListener('click', () => {
+    // Function to close the menu
+    const closeMenu = () => {
         hamburger.classList.remove('open');
         navLinks.classList.remove('active');
-      });
+        document.body.classList.remove('menu-open'); // Re-enables scroll
+    };
+
+    // Event Listeners
+    hamburger.addEventListener('click', () => {
+        // If the menu is already active, a click on the hamburger should close it.
+        if (navLinks.classList.contains('active')) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
     });
+
+    // Listener for the new explicit close button
+    closeBtn.addEventListener('click', closeMenu);
+
+    // Close menu when any of the navigation links are clicked
+    allNavLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Close menu when the 'Escape' key is pressed
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+
 </script>
 </body>
 </html>

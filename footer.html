@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Bold Footer Design</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* Reset and base styles */
         * {
@@ -52,8 +53,7 @@
           height: auto;
         }
 
-        .footer-heading,
-        .newsletter-heading {
+        .footer-heading {
           font-size: 1.5rem;
           font-weight: 700;
           margin-bottom: 2rem;
@@ -84,11 +84,11 @@
           transform: translateX(5px);
         }
 
-        .newsletter {
+        .featured-gallery {
           grid-column: span 2;
         }
 
-        .newsletter p {
+        .featured-gallery p {
           margin-bottom: 2rem;
           font-size: 1.2rem;
           line-height: 1.6;
@@ -96,79 +96,56 @@
           max-width: 500px;
         }
 
-        .newsletter-form {
-          display: flex;
-          gap: 1rem;
-          max-width: 500px;
-        }
-
-        .newsletter-input {
-          flex: 1;
-          padding: 1.2rem 1.5rem;
-          border: 2px solid var(--text-color);
-          background-color: transparent;
-          font-size: 1.1rem;
-          font-weight: 500;
-        }
-
-        .newsletter-input:focus {
-          outline: none;
-          border-color: var(--green);
-        }
-
-        .newsletter-btn {
+        .featured-gallery-btn {
+          display: inline-block;
           background-color: var(--text-color);
           color: var(--white-bg);
-          border: 2px solid var(--text-color);
-          padding: 0 2.5rem;
-          font-size: 1.1rem;
+          padding: 1rem 2rem;
+          text-decoration: none;
           font-weight: 700;
-          cursor: pointer;
           text-transform: uppercase;
           letter-spacing: 0.05em;
           transition: all 0.3s ease;
         }
 
-        .newsletter-btn:hover {
+        .featured-gallery-btn:hover {
           background-color: var(--green);
-          border-color: var(--green);
         }
 
         /* Looping catchphrase */
-.footer-catchphrase {
-  grid-column: 1 / -1;
-  margin-top: 4rem;
-  padding-top: 4rem;
-  border-top: 2px solid var(--text-color);
-  overflow: hidden;
-  white-space: nowrap;
-  position: relative;
-}
+        .footer-catchphrase {
+          grid-column: 1 / -1;
+          margin-top: 4rem;
+          padding-top: 4rem;
+          border-top: 2px solid var(--text-color);
+          overflow: hidden;
+          white-space: nowrap;
+          position: relative;
+        }
 
-.footer-catchphrase .marquee {
-  display: inline-block;
-  padding-left: 100%;
-  animation: scrollText 40s linear infinite; /* Slowed from 15s to 40s */
-}
+        .footer-catchphrase .marquee {
+          display: inline-block;
+          padding-left: 100%;
+          animation: scrollText 40s linear infinite;
+        }
 
-.footer-catchphrase h2 {
-  font-size: clamp(5rem, 20vw, 14rem);
-  font-weight: 900;
-  text-transform: uppercase;
-  line-height: 0.9;
-  letter-spacing: -0.03em;
-  display: inline-block;
-}
+        .footer-catchphrase h2 {
+          font-size: clamp(5rem, 20vw, 14rem);
+          font-weight: 900;
+          text-transform: uppercase;
+          line-height: 0.9;
+          letter-spacing: -0.03em;
+          display: inline-block;
+        }
 
-@keyframes scrollText {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
+        @keyframes scrollText {
+          0% {
+            transform: translateX(0%);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
 
         .footer-bottom {
           grid-column: 1 / -1;
@@ -189,7 +166,7 @@
 
         .social-links a {
           color: var(--text-color);
-          font-size: 1.2rem;
+          font-size: 2rem;
           font-weight: 700;
           text-decoration: none;
           text-transform: uppercase;
@@ -207,12 +184,8 @@
             gap: 2rem;
           }
 
-          .newsletter {
+          .featured-gallery {
             grid-column: span 1;
-          }
-
-          .newsletter-form {
-            flex-direction: column;
           }
 
           .footer-bottom {
@@ -248,11 +221,10 @@
         <div class="footer-links">
             <h3 class="footer-heading">Navigate</h3>
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#works">Works</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#contact">Connect</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="work.html">Works</a></li>
+                <li><a href="contact.html">Connect</a></li>
             </ul>
         </div>
 
@@ -265,13 +237,10 @@
             </ul>
         </div>
 
-        <div class="newsletter">
-            <h3 class="newsletter-heading">Join Our List</h3>
-            <p>Get exclusive updates and insights delivered straight to your inbox.</p>
-            <form class="newsletter-form">
-                <input type="email" class="newsletter-input" placeholder="YOUR EMAIL ADDRESS" required />
-                <button type="submit" class="newsletter-btn">Subscribe</button>
-            </form>
+        <div class="featured-gallery">
+            <h3 class="footer-heading">Featured Gallery</h3>
+            <p>Explore our latest collection of moments, captured with passion and ready to tell their story. Dive into the visuals.</p>
+            <a href="work.html" class="featured-gallery-btn">View Gallery</a>
         </div>
 
         <div class="footer-catchphrase">
@@ -281,11 +250,11 @@
         </div>
 
         <div class="footer-bottom">
-            <div class="copyright">&copy; 2023 All Rights Reserved</div>
+            <div class="copyright">&copy; 2025 All Rights Reserved</div>
             <div class="social-links">
-                <a href="#instagram">Instagram</a>
-                <a href="#twitter">Twitter</a>
-                <a href="#linkedin">LinkedIn</a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
     </div>

@@ -257,6 +257,27 @@ textarea.form-control {
     color: #000;
 }
 
+
+.social-icon {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Vertically center the icon and text */
+    gap: 8px; /* Add some space between the icon and the text */
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Helvetica', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    position: relative;
+    padding-bottom: 5px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.social-icon i {
+    font-size: 1.2rem; /* Optional: Adjust icon size if needed */
+}
+
 @media (max-width: 1024px) {
     .contact-section {
         flex-direction: column;
